@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataForm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Priority="203" xmlns="http://www.enova.pl/schema/form.xsd" DataType="Soneta.Business.UI.PivotData.PivotAggregation,Soneta.Business" >
+  <Page Name="PivotAggregationPage" CaptionHtml="Dane" DataContext="{DataSource}">
+    <Group CaptionHtml="Lista źródłowa" >
+      
+      <Field CaptionHtml="Warunek filtrujący" Width="*" EditValue="{Condition}"></Field>
+      
+      <Grid Width="*" Height="*" EditValue="{Objects}" IsToolbarVisible="true" EditButton="Visible" IsSmartOpen="true">
+        <Field CaptionHtml="Wiersz"  EditValue="{.}" />
+      </Grid>
+      
+    </Group>
+  </Page>
+</DataForm>

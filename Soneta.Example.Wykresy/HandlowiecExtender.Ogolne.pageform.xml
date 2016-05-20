@@ -1,0 +1,61 @@
+﻿<?xml version="1.0"?>
+<DataForm xmlns="http://www.enova.pl/schema/form.xsd" Priority="100">
+  <Page CaptionHtml="Kolorowanki" DataContext="{DataSource}">
+    <Group CaptionHtml="Kontrahent" LabelWidth="10">
+      <Row>
+        <Stack Width="45">
+          <Field CaptionHtml="Kontrahent" EditValue="{Kontrahent}" Width="*"></Field>
+          <Field CaptionHtml="NIP" EditValue="{Kontrahent.EuVAT}" Width="*"  IsReadOnly="true"></Field>
+          <Field CaptionHtml="Przedstawiciel" EditValue="{Osoba}" Width="*"  IsReadOnly="true"></Field>
+        </Stack>
+        <Stack Width="*">
+          <Field CaptionHtml="Nazwa" EditValue="{Kontrahent.Nazwa}" Width="*" IsReadOnly="true"></Field>
+          <Field CaptionHtml="Adres" EditValue="{Kontrahent.Adres}" Width="*" IsReadOnly="true"></Field>
+          <Field CaptionHtml="Telefon" EditValue="{Osoba.Kontakt.TelefonKomorkowy}" Width="*"  IsReadOnly="true"></Field>
+        </Stack>
+        <Stack Width="50">
+          <Command CaptionHtml="Szczegóły kontrahenta" Width="*"  MethodName="OtworzKontrahenta"></Command>
+          <Command CaptionHtml="Dodaj zamówienie"  Width="*" MethodName="DodajZamowienie"></Command>
+          <Command CaptionHtml="Dodaj notatkę"  Width="*"  MethodName="DodajNotatke"></Command>
+        </Stack>
+
+      </Row>
+
+      <Row>
+        <Stack Width="45">
+          <Field CaptionHtml="" EditValue="{Osoba.DefaultImage}" Class="ImageEdit" Width="45"  Height="9" ></Field>
+        </Stack>
+        <Row EditValue="{new KntSprzedazChartExtender}">
+          <Chart Width="65" Height="9" EditValue="{ObrotyWgMiesiac()}" Type="Area" IsLegendVisible="false" ChartColor="Green" CaptionHtml="Sprzedaż i marża w roku">
+            <Axis CaptionHtml="Miesiąc" EditValue="{Miesiac}" />
+            <Field CaptionHtml="Rozchód"  EditValue="{Rozchod}"  />
+            <Field CaptionHtml="Marża"  EditValue="{Marza}"  />
+          </Chart>
+          <Chart Width="50" Height="9" EditValue="{ObrotyWgTowar()}" Type="Pyramid" LabelFormat="{percent}%" FocusedValue="{FocusedItem}" OpenMethodName="OpenFocusedItem" ChartColor="Red" CaptionHtml="Najlepsza sprzedaż">
+            <Axis CaptionHtml="Towar" EditValue="{Towar}" />
+            <Field CaptionHtml="Rozchód"  EditValue="{Rozchod}"  />
+          </Chart>
+        </Row>
+      </Row>
+
+      <Row>
+        <Stack   EditValue="{new KntRozrachunkiChartExtender}" >
+          <Chart CaptionHtml="Struktura wiekowa należności" Width="45" Height="9" EditValue="{Naleznosci()}" Type="Pie" LabelFormat="{value}" FocusedValue="{FocusedItem}" OpenMethodName="OpenFocusedItem">
+            <Axis CaptionHtml="Zakres" EditValue="{Workers.RozrachunekZakres.Przeterminowane}" />
+            <Field CaptionHtml="Należności"  EditValue="{DoRozliczenia}" Aggregate="Sum" />
+          </Chart>
+        </Stack>
+        <Stack Width="*" EditValue="{new KntSprzedazChartExtender}">
+          <Grid Width="*" Height="9" EditValue="{ObrotyRazem()}" IsToolbarVisible="false" IsSmartOpen="true" EditButton="Visible">
+            <Field CaptionHtml="Data" Width="10" EditValue="{Data}" />
+            <Field CaptionHtml="Dokument" Width="15" EditValue="{Rozchod.Dokument}" Class="SmartOpen" />
+            <Field CaptionHtml="Towar" Width="20" EditValue="{Towar}" />
+            <Field CaptionHtml="Ilość" Width="10" EditValue="{Ilosc}" />
+            <Field CaptionHtml="Wartość" Width="15" EditValue="{Rozchod.Wartosc}" />
+          </Grid>
+        </Stack>
+      </Row>
+
+    </Group>
+  </Page>
+</DataForm>

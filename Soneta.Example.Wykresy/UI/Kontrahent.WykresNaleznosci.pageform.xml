@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataForm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Priority="203" xmlns="http://www.enova.pl/schema/form.xsd" DataType="Soneta.CRM.Kontrahent,Soneta.CRM" >
+  <Page Name="KontrahentNaleznosciWykresPage" CaptionHtml="Rozrachunki/Wykres należności" DataContext="{new KntRozrachunkiChartExtender}">
+    <Group CaptionHtml="Należności kontrahenta" >
+
+      <Chart Width="*" Height="15" EditValue="{Naleznosci()}" Type="Pie" LabelFormat="{value}" FocusedValue="{FocusedItem}" OpenMethodName="OpenFocusedItem" >
+        <Axis CaptionHtml="Zakres" EditValue="{Workers.RozrachunekZakres.Przeterminowane}" />
+        <Field CaptionHtml="Należności"  EditValue="{DoRozliczenia}" Aggregate="Sum" />
+      </Chart>
+      
+    </Group>
+  </Page>
+</DataForm>

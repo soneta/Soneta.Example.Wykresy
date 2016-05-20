@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataForm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Priority="203" xmlns="http://www.enova.pl/schema/form.xsd" DataType="Soneta.CRM.Kontrahent,Soneta.CRM" >
+  <Page Name="KontrahentObrotyWykresPage" CaptionHtml="Handel/Wykres obrotów" DataContext="{new KntSprzedazChartExtender}">
+
+    <Group CaptionHtml="Sprzedaż kontrahenta" >
+      <Row>
+        <Field CaptionHtml="Okres" Width="22" EditValue="{Okres}" />
+        <Field CaptionHtml="Pierwsze" Width="14" EditValue="{Top}" />
+      </Row>
+
+      <Chart Width="*" Height="15" EditValue="{ObrotyWgTowar()}" Type="Bar" IsLegendVisible="false" FocusedValue="{FocusedItem}" OpenMethodName="OpenFocusedItem" >
+        <Axis  CaptionHtml="Towar"      EditValue="{Towar}" />
+        <Field CaptionHtml="Wartość/R"  EditValue="{Rozchod}"  />
+        <Field CaptionHtml="Marża"      EditValue="{Marza}" />
+      </Chart>
+
+    </Group>
+  </Page>
+</DataForm>
